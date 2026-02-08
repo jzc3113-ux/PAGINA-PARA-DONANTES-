@@ -1,9 +1,12 @@
 "use client";
 
-// Perfil editable con estado local para la demo.
 import { useState } from "react";
+import Link from "next/link";
+import Button from "../../components/Button";
+import Card from "../../components/Card";
+import InputField from "../../components/InputField";
+import SelectField from "../../components/SelectField";
 import { demoUser } from "../../src/lib/demoData";
-import TopNav from "../components/TopNav";
 
 export default function PerfilPage() {
   const [nombre, setNombre] = useState(demoUser.nombre);
@@ -12,77 +15,91 @@ export default function PerfilPage() {
   const [mensaje, setMensaje] = useState("");
 
   const handleSave = () => {
-    setMensaje("Perfil actualizado localmente.");
+    setMensaje("Tus cambios quedaron guardados en esta demo.");
     window.setTimeout(() => setMensaje(""), 2500);
   };
 
   return (
     <main className="space-y-8">
-      <header className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
-        <h1 className="text-3xl font-semibold text-white">Mi Perfil</h1>
-        <p className="mt-2 text-sm text-slate-400">
-          Gestiona tus datos personales para la recaudación 2026.
-        </p>
-        <div className="mt-6">
-          <TopNav />
+      <header className="rounded-3xl border border-[var(--color-surface)] bg-[var(--color-background)] p-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-primary)]">
+              Perfil
+            </p>
+            <h1 className="mt-3 text-3xl font-semibold">Tus datos</h1>
+            <p className="mt-2 text-sm text-[var(--color-text-primary)] opacity-70">
+              Actualiza tu información para seguir en contacto.
+            </p>
+          </div>
+          <Link
+            href="/dashboard"
+            className="rounded-full px-4 py-2 text-sm font-semibold hover:bg-[var(--color-surface)]"
+          >
+            Volver al resumen
+          </Link>
         </div>
       </header>
 
       <section className="grid gap-6 lg:grid-cols-[220px_1fr]">
-        <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 text-center">
+        <Card className="flex flex-col items-center gap-4 text-center">
           <img
             src={demoUser.foto}
             alt={`Foto de ${demoUser.nombre}`}
-            className="mx-auto h-28 w-28 rounded-full border border-slate-700 object-cover"
+            className="h-28 w-28 rounded-full object-cover"
           />
-          <p className="mt-4 text-base font-semibold text-white">
-            {demoUser.nombre}
-          </p>
-          <p className="text-xs text-slate-400">{demoUser.tipo}</p>
-        </div>
+          <div>
+            <p className="text-base font-semibold">{demoUser.nombre}</p>
+            <p className="text-xs text-[var(--color-text-primary)] opacity-70">
+              {demoUser.tipo}
+            </p>
+          </div>
+        </Card>
 
         <form
-          className="space-y-5 rounded-3xl border border-slate-800 bg-slate-900/60 p-8"
+          className="space-y-5 rounded-3xl border border-[var(--color-surface)] bg-[var(--color-background)] p-8"
           onSubmit={(event) => {
             event.preventDefault();
             handleSave();
           }}
         >
           <div className="grid gap-5 md:grid-cols-2">
-            <label className="text-sm text-slate-300">
-              Nombre completo
-              <input
-                value={nombre}
-                onChange={(event) => setNombre(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-emerald-400"
-              />
-            </label>
-            <label className="text-sm text-slate-300">
-              Email
-              <input
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-emerald-400"
-              />
-            </label>
-          </div>
-          <label className="text-sm text-slate-300">
-            Tipo de voluntariado
-            <input
-              value={tipo}
-              onChange={(event) => setTipo(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-emerald-400"
+            <InputField
+              label="Nombre completo"
+              value={nombre}
+              onChange={(event) => setNombre(event.target.value)}
+              helperText="Así aparecerás en los reconocimientos internos."
             />
-          </label>
+            <InputField
+              label="Email"
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              helperText="Enviaremos recordatorios importantes aquí."
+            />
+          </div>
+
+          <SelectField
+            label="Tipo de voluntariado"
+            value={tipo}
+            onChange={(event) => setTipo(event.target.value)}
+            helperText="Selecciona la opción que mejor describa tu rol."
+          >
+            <option>Voluntaria activa</option>
+            <option>Donante mensual</option>
+            <option>Embajadora comunitaria</option>
+          </SelectField>
+
           <div className="flex flex-wrap items-center gap-4">
-            <button
-              type="submit"
-              className="rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-emerald-300"
-            >
-              Guardar cambios
-            </button>
+            {/* Regla: una sola CTA primaria por pantalla. */}
+            <Button type="submit">Guardar cambios</Button>
+            <Button variant="secondary" type="button">
+              Ver historial
+            </Button>
             {mensaje ? (
-              <span className="text-sm text-emerald-300">{mensaje}</span>
+              <span className="text-sm text-[var(--color-primary)]">
+                {mensaje}
+              </span>
             ) : null}
           </div>
         </form>

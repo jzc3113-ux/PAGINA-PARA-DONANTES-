@@ -14,8 +14,8 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="es">
-      <body className="min-h-screen bg-slate-950 text-slate-100">
-        <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6">
+      <body className="min-h-screen bg-[var(--color-background)] text-[var(--color-text-primary)]">
+        <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
           {children}
         </div>
       </body>

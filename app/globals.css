@@ -2,7 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ajustes base para el MVP de donantes. */
+:root {
+  /* Design tokens: no inventar colores fuera de estos valores. */
+  --color-primary: #0c00c0;
+  --color-background: #ffffff;
+  --color-surface: #f5f6fa;
+  --color-accent: #ff98dd;
+  --color-success: #a8de73;
+  --color-highlight: #ffe667;
+  --color-text-primary: #0b0f1a;
+}
+
+/* Ajustes base para el MVP de donantes (sin dark mode). */
 body {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+* {
+  box-sizing: border-box;
 }

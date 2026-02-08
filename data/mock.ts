@@ -14,46 +14,51 @@ export const profileDefaults = {
   preferencia: "WhatsApp",
 };
 
-export const dashboardCards = [
+export const dashboardSummary = [
   {
     id: "comunidad",
     title: "Tu comunidad",
-    description: "Formas parte del equipo Confía",
+    value: "Equipo Confía",
   },
   {
     id: "recorrido",
     title: "Tu recorrido",
-    description: "Llevas 8 meses acompañando este movimiento",
+    value: "8 meses",
+    helper: "Estás comenzando tu camino dentro de la comunidad.",
   },
   {
     id: "impacto",
     title: "Impacto reciente",
-    description: "Este mes ayudaste a que experiencias educativas sigan activas",
+    value: "Acompañamiento que continúa",
+  },
+];
+
+export const dashboardHighlights = [
+  {
+    id: "espacio",
+    title: "Relación continua",
+    description:
+      "Tu presencia fortalece la confianza y la permanencia en los procesos.",
   },
   {
-    id: "reconocimiento",
-    title: "Reconocimiento activo",
-    description: "Medalla destacada",
+    id: "rol",
+    title: "Tu rol actual",
+    description: "Este rol solo personaliza tu experiencia.",
+  },
+  {
+    id: "impacto",
+    title: "Impacto compartido",
+    description: "Celebramos logros que siguen creciendo en comunidad.",
   },
 ];
 
 export const membershipStatus = {
-  status: "activa" as const,
-  copy: {
-    activa: "Tu membresía está activa. Gracias por acompañar este camino.",
-    pausa: "Tu membresía está en pausa. Lo que ya hiciste sigue teniendo impacto.",
-    pendiente: "Estamos validando tu membresía. Te avisaremos pronto.",
-  },
+  label: "Membresía activa",
+  message: "¡Gracias por seguir haciendo la diferencia!",
 };
 
 export const membershipBadges = [
-  { id: "badge-1", name: "Inicio Solidario", status: "lograda" },
-  { id: "badge-2", name: "Manos a la Obra", status: "lograda" },
-  { id: "badge-3", name: "Camino Constante", status: "en progreso" },
-  { id: "badge-4", name: "Reconocimiento Especial", status: "en progreso" },
+  { id: "badge-1", label: "Lograda", status: "lograda" },
+  { id: "badge-2", label: "En progreso", status: "en progreso" },
+  { id: "badge-3", label: "Bloqueada", status: "bloqueada" },
 ];
-
-export const teamInfo = {
-  name: "Confía",
-  description: "Este valor guía la forma en que transformamos juntos.",
-};

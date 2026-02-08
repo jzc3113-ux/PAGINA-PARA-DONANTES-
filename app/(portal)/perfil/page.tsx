@@ -30,12 +30,9 @@ export default function PerfilPage() {
     <main className="space-y-8">
       <header className="rounded-3xl border border-[var(--color-surface)] bg-[var(--color-background)] p-8">
         <div className="space-y-3">
-          <h1 className="text-3xl font-semibold">Tu perfil</h1>
+          <h1 className="text-3xl font-semibold">Tu información, a tu manera.</h1>
           <p className="text-sm text-[var(--color-text-primary)] opacity-70">
             Queremos comunicarnos contigo de la forma que prefieras.
-          </p>
-          <p className="text-sm text-[var(--color-text-primary)] opacity-70">
-            Usamos esta información solo para mantenerte informado.
           </p>
         </div>
       </header>
@@ -71,7 +68,7 @@ export default function PerfilPage() {
         </SelectField>
 
         <SelectField
-          label="Rol seleccionado"
+          label="Rol"
           value={selectedRole}
           onChange={(event) => setSelectedRole(event.target.value)}
         >

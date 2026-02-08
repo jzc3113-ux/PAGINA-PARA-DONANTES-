@@ -5,6 +5,7 @@ export type TableColumn = {
   key: string;
   label: string;
   className?: string;
+  render?: (row: TableRow) => ReactNode;
 };
 
 export type TableRow = {
@@ -13,7 +14,7 @@ export type TableRow = {
     label: string;
     variant: PillVariant;
   };
-  [key: string]: ReactNode;
+  [key: string]: ReactNode | TableRow["status"];
 };
 
 type TableProps = {
@@ -49,14 +50,18 @@ export default function Table({ columns, rows }: TableProps) {
                 <td
                   key={`${row.id}-${column.key}`}
                   className={`px-5 py-4 text-[var(--color-text-primary)] ${
-                    column.className ?? ""
-                  }`}
-                >
-                  {column.key === "status" && row.status ? (
-                    <Pill variant={row.status.variant}>{row.status.label}</Pill>
-                  ) : (
-                    row[column.key]
-                  )}
+                  column.className ?? ""
+                }`}
+              >
+                  {column.render
+                    ? column.render(row)
+                    : column.key === "status" && row.status
+                      ? (
+                          <Pill variant={row.status.variant}>
+                            {row.status.label}
+                          </Pill>
+                        )
+                      : row[column.key]}
                 </td>
               ))}
             </tr>

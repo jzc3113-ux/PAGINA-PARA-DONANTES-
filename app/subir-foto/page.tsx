@@ -1,8 +1,9 @@
 "use client";
 
-// Subida de foto con preview local sin backend.
 import { useEffect, useState } from "react";
-import TopNav from "../components/TopNav";
+import Link from "next/link";
+import Button from "../../components/Button";
+import Card from "../../components/Card";
 
 export default function SubirFotoPage() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -25,35 +26,45 @@ export default function SubirFotoPage() {
 
   return (
     <main className="space-y-8">
-      <header className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
-        <h1 className="text-3xl font-semibold text-white">Subir Foto</h1>
-        <p className="mt-2 text-sm text-slate-400">
-          Adjunta evidencia de tus actividades (solo preview local).
-        </p>
-        <div className="mt-6">
-          <TopNav />
+      <header className="rounded-3xl border border-[var(--color-surface)] bg-[var(--color-background)] p-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-primary)]">
+              Evidencias
+            </p>
+            <h1 className="mt-3 text-3xl font-semibold">Subir foto</h1>
+            <p className="mt-2 text-sm text-[var(--color-text-primary)] opacity-70">
+              Adjunta evidencia de tus actividades (solo preview local).
+            </p>
+          </div>
+          <Link
+            href="/dashboard"
+            className="rounded-full px-4 py-2 text-sm font-semibold hover:bg-[var(--color-surface)]"
+          >
+            Volver al resumen
+          </Link>
         </div>
       </header>
 
       <section className="grid gap-6 lg:grid-cols-[1fr_320px]">
-        <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
-          <label className="text-sm text-slate-300">
-            Selecciona una imagen
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="mt-3 w-full rounded-xl border border-dashed border-slate-700 bg-slate-950 px-4 py-6 text-sm text-slate-300 file:mr-4 file:rounded-full file:border-0 file:bg-emerald-400 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-slate-900 hover:file:bg-emerald-300"
-            />
-          </label>
-          <p className="mt-4 text-xs text-slate-500">
+        <Card title="Selecciona una imagen">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="mt-4 w-full rounded-2xl border border-dashed border-[var(--color-surface)] bg-[var(--color-background)] px-4 py-6 text-sm text-[var(--color-text-primary)] file:mr-4 file:rounded-full file:border-0 file:bg-[var(--color-primary)] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[var(--color-background)] hover:file:opacity-90"
+          />
+          <p className="mt-4 text-xs text-[var(--color-text-primary)] opacity-60">
             No se sube ninguna foto, solo se muestra una vista previa local.
           </p>
-        </div>
+          <div className="mt-6">
+            {/* Regla: una sola CTA primaria por pantalla. */}
+            <Button variant="secondary">Guardar evidencia</Button>
+          </div>
+        </Card>
 
-        <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6">
-          <p className="text-sm text-slate-300">Vista previa</p>
-          <div className="mt-4 flex min-h-[220px] items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-950">
+        <Card title="Vista previa">
+          <div className="mt-4 flex min-h-[220px] items-center justify-center rounded-2xl border border-dashed border-[var(--color-surface)] bg-[var(--color-background)]">
             {previewUrl ? (
               <img
                 src={previewUrl}
@@ -61,12 +72,12 @@ export default function SubirFotoPage() {
                 className="max-h-[200px] rounded-xl object-cover"
               />
             ) : (
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-[var(--color-text-primary)] opacity-60">
                 Aún no has seleccionado una imagen.
               </p>
             )}
           </div>
-        </div>
+        </Card>
       </section>
     </main>
   );

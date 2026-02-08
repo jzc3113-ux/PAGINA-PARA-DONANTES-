@@ -1,17 +1,28 @@
-// Grid de medallas con estado bloqueado/desbloqueado.
+import Link from "next/link";
+import Card from "../../components/Card";
+import Pill from "../../components/Pill";
 import { demoMedallas, demoUser } from "../../src/lib/demoData";
-import TopNav from "../components/TopNav";
 
 export default function MedallasPage() {
   return (
     <main className="space-y-8">
-      <header className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8">
-        <h1 className="text-3xl font-semibold text-white">Mis Medallas</h1>
-        <p className="mt-2 text-sm text-slate-400">
-          Progreso de {demoUser.nombre} en la recaudación 2026.
-        </p>
-        <div className="mt-6">
-          <TopNav />
+      <header className="rounded-3xl border border-[var(--color-surface)] bg-[var(--color-background)] p-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-primary)]">
+              Medallas
+            </p>
+            <h1 className="mt-3 text-3xl font-semibold">Mis logros</h1>
+            <p className="mt-2 text-sm text-[var(--color-text-primary)] opacity-70">
+              Progreso de {demoUser.nombre} en la recaudación 2026.
+            </p>
+          </div>
+          <Link
+            href="/dashboard"
+            className="rounded-full px-4 py-2 text-sm font-semibold hover:bg-[var(--color-surface)]"
+          >
+            Volver al resumen
+          </Link>
         </div>
       </header>
 
@@ -19,22 +30,18 @@ export default function MedallasPage() {
         {demoMedallas.map((medalla) => {
           const unlocked = medalla.estado === "unlocked";
           return (
-            <div
+            <Card
               key={medalla.nombre}
-              className={`rounded-2xl border p-5 ${
-                unlocked
-                  ? "border-emerald-400/40 bg-emerald-400/10"
-                  : "border-slate-800 bg-slate-900/60 text-slate-400"
-              }`}
+              className={unlocked ? "border-l-4 border-l-[var(--color-success)]" : ""}
             >
               <div className="text-3xl">{medalla.icono}</div>
-              <p className="mt-3 text-lg font-semibold text-white">
-                {medalla.nombre}
-              </p>
-              <p className="mt-1 text-xs uppercase tracking-wide text-slate-400">
-                {unlocked ? "Desbloqueada" : "Bloqueada"}
-              </p>
-            </div>
+              <p className="mt-3 text-lg font-semibold">{medalla.nombre}</p>
+              <div className="mt-2">
+                <Pill variant={unlocked ? "success" : "neutral"}>
+                  {unlocked ? "Desbloqueada" : "En progreso"}
+                </Pill>
+              </div>
+            </Card>
           );
         })}
       </section>

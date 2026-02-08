@@ -3,7 +3,7 @@ import Alert from "../../components/Alert";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Pill from "../../components/Pill";
-import Table, { type TableRow } from "../../components/Table";
+import Table from "../../components/Table";
 import { demoAportes } from "../../src/lib/demoData";
 
 const columns = [
@@ -14,10 +14,6 @@ const columns = [
     key: "status",
     label: "Estado",
     className: "text-right",
-    render: (row: TableRow) =>
-      row.status ? (
-        <Pill variant={row.status.variant}>{row.status.label}</Pill>
-      ) : null,
   },
 ];
 
@@ -59,7 +55,11 @@ export default function AportesPage() {
             fecha: aporte.fecha,
             aporte: aporte.aporte,
             metodo: aporte.metodo,
-            status: aporte.status,
+            status: aporte.status ? (
+              <Pill variant={aporte.status.variant}>
+                {aporte.status.label}
+              </Pill>
+            ) : null,
           }))}
         />
       </Card>

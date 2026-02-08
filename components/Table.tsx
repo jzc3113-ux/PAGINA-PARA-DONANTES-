@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Pill, { type PillVariant } from "./Pill";
 
 export type TableColumn = {
   key: string;
@@ -10,12 +9,7 @@ export type TableColumn = {
 
 export type TableRow = {
   id: string;
-  status?: {
-    label: string;
-    variant: PillVariant;
-  };
-  [key: string]: ReactNode | TableRow["status"];
-};
+} & Record<string, ReactNode>;
 
 type TableProps = {
   columns: TableColumn[];
@@ -55,13 +49,7 @@ export default function Table({ columns, rows }: TableProps) {
               >
                   {column.render
                     ? column.render(row)
-                    : column.key === "status" && row.status
-                      ? (
-                          <Pill variant={row.status.variant}>
-                            {row.status.label}
-                          </Pill>
-                        )
-                      : row[column.key]}
+                    : row[column.key]}
                 </td>
               ))}
             </tr>

@@ -29,9 +29,10 @@ Ubicados en `/components`:
 - `InputField` y `SelectField`: label + helper + estados.
 
 ## Estructura de carpetas
-- `app/`: rutas del App Router de Next.js (login, dashboard, aportes, impacto, perfil, medallas, subir-foto).
+- `app/`: rutas del App Router de Next.js (login, home, dashboard, membresia, perfil).
 - `components/`: componentes UI reutilizables.
-- `src/lib/`: datos demo (hardcoded) usados por las vistas.
+- `data/`: datos mock centralizados usados por las vistas.
+- `src/lib/`: helpers y hooks del MVP.
 - `tailwind.config.ts` / `postcss.config.js`: configuración de Tailwind CSS.
 
 ## Deploy en Vercel
@@ -41,10 +42,8 @@ Ubicados en `/components`:
 4. Click en **Deploy**.
 
 ## Rutas principales
-- `/login`: login/registro fake con botón de acceso.
-- `/dashboard`: resumen con métricas y CTA principal.
-- `/aportes`: historial de aportes con tabla y alerta.
-- `/impacto`: tarjetas de impacto y resumen mensual.
-- `/perfil`: formulario de perfil editable en estado local.
-- `/medallas`: grid con medallas bloqueadas/desbloqueadas.
-- `/subir-foto`: input con preview local de imagen.
+- `/login`: selección de rol y acceso al portal.
+- `/home`: bienvenida y CTA al dashboard.
+- `/dashboard`: resumen del espacio personal y accesos.
+- `/membresia`: estado de membresía, medallas y equipo.
+- `/perfil`: formulario editable con rol y preferencias.

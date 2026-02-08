@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import PortalNavbar from "../../components/PortalNavbar";
+import TabsNav from "../../components/TabsNav";
 
 type PortalLayoutProps = {
   children: ReactNode;
@@ -8,7 +8,7 @@ type PortalLayoutProps = {
 export default function PortalLayout({ children }: PortalLayoutProps) {
   return (
     <div className="space-y-6">
-      <PortalNavbar />
+      <TabsNav />
       {children}
     </div>
   );

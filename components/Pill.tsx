@@ -1,8 +1,8 @@
-type PillVariant = "success" | "highlight" | "neutral";
+type PillVariant = "success" | "warning" | "neutral";
 
 const variantStyles: Record<PillVariant, string> = {
   success: "bg-[var(--color-success)] text-[var(--color-text-primary)]",
-  highlight: "bg-[var(--color-highlight)] text-[var(--color-text-primary)]",
+  warning: "bg-[var(--color-highlight)] text-[var(--color-text-primary)]",
   neutral: "bg-[var(--color-surface)] text-[var(--color-text-primary)]",
 };
 

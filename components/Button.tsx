@@ -7,7 +7,7 @@ const variantStyles = {
   primary:
     "bg-[var(--color-primary)] text-[var(--color-background)] hover:opacity-90 active:scale-[0.98] focus-visible:outline-[var(--color-primary)]",
   secondary:
-    "border border-[var(--color-primary)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:opacity-90 active:scale-[0.98] focus-visible:outline-[var(--color-primary)]",
+    "border border-[var(--color-primary)] bg-transparent text-[var(--color-primary)] hover:opacity-90 active:scale-[0.98] focus-visible:outline-[var(--color-primary)]",
   ghost:
     "text-[var(--color-text-primary)] hover:bg-[var(--color-surface)] active:scale-[0.98] focus-visible:outline-[var(--color-primary)]",
 };

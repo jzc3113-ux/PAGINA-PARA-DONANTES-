@@ -2,14 +2,23 @@ import Link from "next/link";
 import Alert from "../../components/Alert";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
-import Table from "../../components/Table";
+import Pill from "../../components/Pill";
+import Table, { type TableRow } from "../../components/Table";
 import { demoAportes } from "../../src/lib/demoData";
 
 const columns = [
   { key: "fecha", label: "Fecha" },
   { key: "aporte", label: "Monto" },
   { key: "metodo", label: "Método" },
-  { key: "status", label: "Estado", className: "text-right" },
+  {
+    key: "status",
+    label: "Estado",
+    className: "text-right",
+    render: (row: TableRow) =>
+      row.status ? (
+        <Pill variant={row.status.variant}>{row.status.label}</Pill>
+      ) : null,
+  },
 ];
 
 export default function AportesPage() {
